@@ -15,6 +15,8 @@ public class TecMis {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Welcome wel = new Welcome();
+        wel.show();
     }
     
 }
