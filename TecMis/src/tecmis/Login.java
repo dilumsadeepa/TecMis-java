@@ -4,6 +4,14 @@
  */
 package tecmis;
 
+import java.sql.*;
+;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ADMIN
@@ -13,6 +21,12 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    public String url = "jdbc:mysql://localhost:3306/tecmis";
+    public String user = "root";
+    public String password = "";
+        
+        
     public Login() {
         initComponents();
     }
@@ -127,7 +141,36 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbtnActionPerformed
-        // TODO add your handling code here:
+        
+        String luser = lusername.getText();
+        String lpwd = lpassword.getText();
+        
+        try {
+            // TODO add your handling code here:
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            Statement st2 = conn.createStatement();
+            
+            
+            String sql = "select * from users where username = '"+luser+"' and password = '"+lpwd+"'";
+            
+            ResultSet result = st2.executeQuery(sql);
+            
+            if(result.next()){
+                System.out.println("go to");
+            }else{
+                JOptionPane.showMessageDialog(this, "The username or passsword is incorrect");
+            }
+            
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_loginbtnActionPerformed
 
     private void loginresetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginresetbtnActionPerformed
@@ -185,4 +228,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField lpassword;
     private javax.swing.JTextField lusername;
     // End of variables declaration//GEN-END:variables
+
+    private void getText() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
