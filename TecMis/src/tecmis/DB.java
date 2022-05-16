@@ -31,6 +31,8 @@ public class DB {
             
             conn = DriverManager.getConnection(url, user, password);
             
+            stm = conn.createStatement();
+            
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
