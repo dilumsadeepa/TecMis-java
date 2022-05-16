@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
                    Tofficerdashbord toff = new Tofficerdashbord();
                    toff.show();
                }else if(level == 3){
-                   Lecturerdashbord lec = new Lecturerdashbord();
+                   Lecturerdashboard lec = new Lecturerdashboard();
                    lec.show();
                }else if(level == 4){
                    Studentdashbord stu = new Studentdashbord();
