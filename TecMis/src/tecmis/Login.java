@@ -22,9 +22,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
-    public String url = "jdbc:mysql://localhost:3306/tecmis";
-    public String user = "root";
-    public String password = "";
+    
         
         
     public Login() {
@@ -145,32 +143,26 @@ public class Login extends javax.swing.JFrame {
         String luser = lusername.getText();
         String lpwd = lpassword.getText();
         
+        DB db = new DB();
+        db.getconnect();
+        
         try {
-            // TODO add your handling code here:
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            Connection conn = DriverManager.getConnection(url, user, password);
-            
-            Statement st2 = conn.createStatement();
-            
             
             String sql = "select * from users where username = '"+luser+"' and password = '"+lpwd+"'";
             
-            ResultSet result = st2.executeQuery(sql);
-            
-            if(result.next()){
-                System.out.println("go to");
-            }else{
-                JOptionPane.showMessageDialog(this, "The username or passsword is incorrect");
-            }
-            
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            ResultSet result = db.stm.executeQuery(sql);
+
+           if(result.next()){
+               System.out.println("go to");
+           }else{
+               JOptionPane.showMessageDialog(this, "The username or passsword is incorrect");
+           }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+            
+         
     }//GEN-LAST:event_loginbtnActionPerformed
 
     private void loginresetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginresetbtnActionPerformed
