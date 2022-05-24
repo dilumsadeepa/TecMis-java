@@ -4,18 +4,59 @@
  */
 package tecmis;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ADMIN
  */
-public class Adduseradmin extends javax.swing.JFrame {
+public final class Adduseradmin extends javax.swing.JFrame {
 
     /**
      * Creates new form Adduseradmin
      */
+    
+    DB db = new DB();
+    Users us = new Users();
+    
+            
+            
     public Adduseradmin() {
         initComponents();
+        
+        db.getconnect();
+        
+        setdatatotable();
     }
+    
+    
+    public void setdatatotable(){
+        try {
+            DefaultTableModel model = (DefaultTableModel)utable.getModel();
+            
+            String qu = "SELECT * FROM users";
+            ResultSet rs = db.stm.executeQuery(qu);
+            
+            while(rs.next()){
+                Object[] row = {rs.getInt("id"),rs.getString("name"),rs.getString("email"),rs.getInt("tel"),rs.getString("gender")};
+                model.addRow(row);
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,42 +72,63 @@ public class Adduseradmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        adusername = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        adpwd = new javax.swing.JTextField();
+        pwd = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        adpwdco = new javax.swing.JTextField();
+        cpwd = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        adroll = new javax.swing.JComboBox<>();
+        level = new javax.swing.JComboBox<>();
         adduserbtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tel = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        gender = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        utable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        sutext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User profiles");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 20, 156, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Add User");
 
-        jLabel3.setText("User name");
+        jLabel3.setText("Name");
 
         jLabel4.setText("Password");
 
+        pwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Comfirm Password");
+
+        cpwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpwdActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Roll");
 
-        adroll.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Technical Officer", "Lecturer", "Student" }));
+        level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Technical Officer", "Lecturer", "Student" }));
 
         adduserbtn.setBackground(new java.awt.Color(255, 0, 255));
         adduserbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -76,6 +138,14 @@ public class Adduseradmin extends javax.swing.JFrame {
                 adduserbtnActionPerformed(evt);
             }
         });
+
+        jLabel7.setText("Email");
+
+        jLabel8.setText("Phone Number");
+
+        jLabel9.setText("Gender");
+
+        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " ", " " }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -88,95 +158,91 @@ public class Adduseradmin extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel3)
-                                .addComponent(adusername)
-                                .addComponent(jLabel4)
-                                .addComponent(adpwd)
-                                .addComponent(adpwdco, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(name)
+                            .addComponent(jLabel4)
+                            .addComponent(pwd)
+                            .addComponent(cpwd)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(email)
+                            .addComponent(tel)
+                            .addComponent(gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(level, 0, 191, Short.MAX_VALUE))))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(adduserbtn)
-                .addGap(36, 36, 36))
+                .addGap(19, 19, 19))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(adusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(adpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(adpwdco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(adroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(level, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(adduserbtn)
-                .addGap(39, 39, 39))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, -1, -1));
+
+        utable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "User Name", "Roll"
+                "ID", "Name", "Email", "Phone Number", "Gender"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(utable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 122, 510, 381));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("Delete");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 78, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(312, 312, 312)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(0, 32, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
+        sutext.setBackground(new java.awt.Color(0, 255, 255));
+        sutext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sutext.setForeground(new java.awt.Color(0, 255, 0));
+        jPanel1.add(sutext, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 20, 278, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,7 +252,7 @@ public class Adduseradmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -194,33 +260,78 @@ public class Adduseradmin extends javax.swing.JFrame {
 
     private void adduserbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adduserbtnActionPerformed
         // TODO add your handling code here:
+        System.out.println("in fun");
         
         try {
-            DB db = new DB();
-            db.getconnect();
             
-            String user = adusername.getText();
-            String pwd = adpwd.getText();
-            String copwd = adpwdco.getText();
-            String roll = adroll.getSelectedItem().toString();
-            String level;
             
-            if(roll.equals("Admin")){
-                level = "1";
-            }else if(roll.equals("Technical Officer")){
-                level = "2";
-                
-            }else if(roll.equals("Lecturer")){
-                
+            /*String user = name.getText();
+            String uemail = email.getText();
+            String upwd = pwd.getText();
+            String copwd = cpwd.getText();
+            String utel = tel.getText();
+            String ugender = gender.getSelectedItem().toString();
+            String roll = level.getSelectedItem().toString();*/
+            
+            us.setName(name.getText());
+            us.setEmail(email.getText());
+            us.setPassword(pwd.getText());
+            us.setTel(tel.getText());
+            us.setGender(gender.getSelectedItem().toString());
+            String roll = level.getSelectedItem().toString();
+            
+            
+            
+            switch (roll) {
+                case "Admin":
+                    us.setLevel("1");
+                    break;
+                case "Technical Officer":
+                    us.setLevel("2");
+                    break;
+                case "Lecturer":
+                    us.setLevel("3");
+                    break;
+                case "Student":
+                    us.setLevel("4");
+                    break;
+                default:
+                    break;
             }
-                
+          
             
-            if(pwd == null ? copwd == null  : pwd.equals(copwd)){
-                String sql = "insert into users (username,password,level) values ('"+user+"','"+pwd+"'";
+            if(!us.getName().equals("") || !us.getEmail().equals("") || !us.getPassword().equals("")|| !us.getTel().equals("")|| !us.getGender().equals("")){
+                
+                if (us.getPassword().equals(cpwd.getText())) {
+                   String sql = "insert into users (name,email,password,tel,gender,level) values ('"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"',"+us.getLevel()+"'";
+                
+                    int res = db.stm.executeUpdate(sql);
+                
+                    if (res > 0) {
+                        sutext.setText("User added Successfully");
+                        setdatatotable();
+                    }else{
+                        sutext.setText("database error");
+                    } 
+                }else{
+                    sutext.setText("The passwors are did not match");
+                }
+                
+            }else{
+                sutext.setText("Error in getting data");
             }
         } catch (Exception e) {
+            sutext.setText("Did not run try");
         }
     }//GEN-LAST:event_adduserbtnActionPerformed
+
+    private void pwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pwdActionPerformed
+
+    private void cpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpwdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,10 +370,9 @@ public class Adduseradmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adduserbtn;
-    private javax.swing.JTextField adpwd;
-    private javax.swing.JTextField adpwdco;
-    private javax.swing.JComboBox<String> adroll;
-    private javax.swing.JTextField adusername;
+    private javax.swing.JTextField cpwd;
+    private javax.swing.JTextField email;
+    private javax.swing.JComboBox<String> gender;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -270,9 +380,17 @@ public class Adduseradmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> level;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField pwd;
+    private javax.swing.JLabel sutext;
+    private javax.swing.JTextField tel;
+    private javax.swing.JTable utable;
     // End of variables declaration//GEN-END:variables
 }
