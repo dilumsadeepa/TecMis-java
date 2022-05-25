@@ -23,9 +23,11 @@ public final class Adduseradmin extends javax.swing.JFrame {
     DB db = new DB();
     Users us = new Users();
     
+    
             
             
     public Adduseradmin() {
+        
         initComponents();
         
         db.getconnect();
@@ -42,7 +44,7 @@ public final class Adduseradmin extends javax.swing.JFrame {
             ResultSet rs = db.stm.executeQuery(qu);
             
             while(rs.next()){
-                Object[] row = {rs.getInt("id"),rs.getString("name"),rs.getString("email"),rs.getInt("tel"),rs.getString("gender")};
+                Object[] row = {rs.getString("id_num"),rs.getString("name"),rs.getString("email"),rs.getInt("tel"),rs.getString("gender")};
                 model.addRow(row);
                 
             }
@@ -86,10 +88,15 @@ public final class Adduseradmin extends javax.swing.JFrame {
         tel = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         gender = new javax.swing.JComboBox<>();
+        adduserreset = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        adminuserupdate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         utable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        adminuserdelete = new javax.swing.JButton();
         sutext = new javax.swing.JLabel();
+        adminuseredit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -101,14 +108,22 @@ public final class Adduseradmin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User profiles");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 20, 156, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 156, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setAutoscrolls(true);
+        jPanel2.setMinimumSize(new java.awt.Dimension(270, 550));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Add User");
 
         jLabel3.setText("Name");
+
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Password");
 
@@ -129,9 +144,15 @@ public final class Adduseradmin extends javax.swing.JFrame {
         jLabel6.setText("Roll");
 
         level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Technical Officer", "Lecturer", "Student" }));
+        level.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                levelActionPerformed(evt);
+            }
+        });
 
         adduserbtn.setBackground(new java.awt.Color(255, 0, 255));
         adduserbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adduserbtn.setForeground(new java.awt.Color(255, 255, 255));
         adduserbtn.setText("ADD");
         adduserbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,11 +162,50 @@ public final class Adduseradmin extends javax.swing.JFrame {
 
         jLabel7.setText("Email");
 
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+
         jLabel8.setText("Phone Number");
+
+        tel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Gender");
 
-        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " ", " " }));
+        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Male", "Female" }));
+        gender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderActionPerformed(evt);
+            }
+        });
+
+        adduserreset.setBackground(new java.awt.Color(204, 0, 51));
+        adduserreset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adduserreset.setForeground(new java.awt.Color(255, 255, 255));
+        adduserreset.setText("Reset");
+        adduserreset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adduserresetActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("ID Number");
+
+        adminuserupdate.setBackground(new java.awt.Color(102, 102, 102));
+        adminuserupdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adminuserupdate.setForeground(new java.awt.Color(255, 255, 255));
+        adminuserupdate.setText("Update");
+        adminuserupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminuserupdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,32 +218,43 @@ public final class Adduseradmin extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(name)
-                            .addComponent(jLabel4)
-                            .addComponent(pwd)
-                            .addComponent(cpwd)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(email)
-                            .addComponent(tel)
-                            .addComponent(gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(level, 0, 191, Short.MAX_VALUE))))
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(adduserbtn)
-                .addGap(19, 19, 19))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(pwd)
+                                .addComponent(cpwd)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)
+                                .addComponent(gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(level, 0, 191, Short.MAX_VALUE)
+                                .addComponent(jLabel10)
+                                .addComponent(id)
+                                .addComponent(jLabel8))
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(adduserbtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                .addComponent(adduserreset)))))
+                .addGap(34, 34, 34))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(adminuserupdate)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,7 +263,7 @@ public final class Adduseradmin extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,18 +284,19 @@ public final class Adduseradmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(level, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(adduserbtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adduserbtn)
+                    .addComponent(adduserreset))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(adminuserupdate)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 580));
 
         utable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "Email", "Phone Number", "Gender"
@@ -232,27 +304,43 @@ public final class Adduseradmin extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(utable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 122, 510, 381));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 122, 550, 420));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Delete");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 78, -1, -1));
+        adminuserdelete.setBackground(new java.awt.Color(255, 0, 255));
+        adminuserdelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adminuserdelete.setText("Delete");
+        adminuserdelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminuserdeleteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(adminuserdelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 78, -1, -1));
 
         sutext.setBackground(new java.awt.Color(0, 255, 255));
         sutext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        sutext.setForeground(new java.awt.Color(0, 255, 0));
-        jPanel1.add(sutext, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 20, 278, -1));
+        jPanel1.add(sutext, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 280, 30));
+
+        adminuseredit.setBackground(new java.awt.Color(255, 0, 255));
+        adminuseredit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adminuseredit.setText("Edit");
+        adminuseredit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminusereditActionPerformed(evt);
+            }
+        });
+        jPanel1.add(adminuseredit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,19 +348,7 @@ public final class Adduseradmin extends javax.swing.JFrame {
 
     private void adduserbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adduserbtnActionPerformed
         // TODO add your handling code here:
-        System.out.println("in fun");
-        
-        try {
-            
-            
-            /*String user = name.getText();
-            String uemail = email.getText();
-            String upwd = pwd.getText();
-            String copwd = cpwd.getText();
-            String utel = tel.getText();
-            String ugender = gender.getSelectedItem().toString();
-            String roll = level.getSelectedItem().toString();*/
-            
+            us.setId(id.getText());
             us.setName(name.getText());
             us.setEmail(email.getText());
             us.setPassword(pwd.getText());
@@ -298,27 +374,39 @@ public final class Adduseradmin extends javax.swing.JFrame {
                 default:
                     break;
             }
-          
             
-            if(!us.getName().equals("") || !us.getEmail().equals("") || !us.getPassword().equals("")|| !us.getTel().equals("")|| !us.getGender().equals("")){
+            
+        
+        try {
+            
+            if(us.getId().equals("") || us.getName().equals("") || us.getEmail().equals("") || us.getPassword().equals("")|| us.getTel().equals("")|| us.getGender().equals("")){
+                sutext.setText("Error in getting data");
                 
+            }else{
                 if (us.getPassword().equals(cpwd.getText())) {
-                   String sql = "insert into users (name,email,password,tel,gender,level) values ('"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"',"+us.getLevel()+"'";
+                   String sql = "insert into users (id_num,name,email,password,tel,gender,level) values ('"+us.getId()+"','"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"','"+us.getLevel()+"')";
                 
                     int res = db.stm.executeUpdate(sql);
-                
                     if (res > 0) {
                         sutext.setText("User added Successfully");
-                        setdatatotable();
+                        DefaultTableModel dtm = (DefaultTableModel)utable.getModel();
+                        
+                        String[] items = {us.getId(),us.getName(),us.getEmail(),us.getTel(),us.getGender()};
+                        dtm.addRow(items);
+                        
+                        id.setText("");
+                        name.setText("");
+                        email.setText("");
+                        pwd.setText("");
+                        cpwd.setText("");
+                        tel.setText("");
+                        
                     }else{
                         sutext.setText("database error");
                     } 
                 }else{
                     sutext.setText("The passwors are did not match");
                 }
-                
-            }else{
-                sutext.setText("Error in getting data");
             }
         } catch (Exception e) {
             sutext.setText("Did not run try");
@@ -332,6 +420,147 @@ public final class Adduseradmin extends javax.swing.JFrame {
     private void cpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpwdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpwdActionPerformed
+
+    private void adduserresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adduserresetActionPerformed
+        id.setText("");
+        name.setText("");
+        email.setText("");
+        pwd.setText("");
+        cpwd.setText("");
+        tel.setText("");
+       
+    }//GEN-LAST:event_adduserresetActionPerformed
+
+    private void telActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genderActionPerformed
+
+    private void levelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_levelActionPerformed
+
+    private void adminuserdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminuserdeleteActionPerformed
+        // TODO add your handling code here:
+        int drow = utable.getSelectedRow();
+        
+        if(drow > 0){
+            String uid = (String) utable.getValueAt(drow, 0);
+                       
+            DefaultTableModel model = (DefaultTableModel)utable.getModel();
+            model.removeRow(drow);
+            
+            String dsql = "delete from users where id_num ='"+uid+"'";
+            
+            try {
+                int rest = db.stm.executeUpdate(dsql);
+                if(rest > 0){
+                    sutext.setText("Deleted successfully");
+                }else{
+                    sutext.setText("Deleted Unsuccessfully");
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            sutext.setText("Select a row");
+        }
+    }//GEN-LAST:event_adminuserdeleteActionPerformed
+
+    private void adminusereditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminusereditActionPerformed
+        // TODO add your handling code here:
+        int row = utable.getSelectedRow();
+        if(row>0){
+            
+            id.setText((String) utable.getValueAt(row, 0));
+            name.setText((String) utable.getValueAt(row, 1));
+            email.setText((String) utable.getValueAt(row, 2));
+            tel.setText((String) utable.getValueAt(row, 3));
+            
+        }else{
+            sutext.setText("Select a row");
+        }
+    }//GEN-LAST:event_adminusereditActionPerformed
+
+    private void adminuserupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminuserupdateActionPerformed
+        // TODO add your handling code here:
+            us.setId(id.getText());
+            us.setName(name.getText());
+            us.setEmail(email.getText());
+            us.setPassword(pwd.getText());
+            us.setTel(tel.getText());
+            us.setGender(gender.getSelectedItem().toString());
+            String roll = level.getSelectedItem().toString();
+            
+            
+            
+            switch (roll) {
+                case "Admin":
+                    us.setLevel("1");
+                    break;
+                case "Technical Officer":
+                    us.setLevel("2");
+                    break;
+                case "Lecturer":
+                    us.setLevel("3");
+                    break;
+                case "Student":
+                    us.setLevel("4");
+                    break;
+                default:
+                    break;
+            }
+            
+            
+        
+        try {
+            
+            if(us.getId().equals("") || us.getName().equals("") || us.getEmail().equals("") || us.getPassword().equals("")|| us.getTel().equals("")|| us.getGender().equals("")){
+                sutext.setText("Error in getting data");
+                
+            }else{
+                if (us.getPassword().equals(cpwd.getText())) {
+                   String sql = "insert into users (id_num,name,email,password,tel,gender,level) values ('"+us.getId()+"','"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"','"+us.getLevel()+"')";
+                
+                    int res = db.stm.executeUpdate(sql);
+                    if (res > 0) {
+                        sutext.setText("User added Successfully");
+                        DefaultTableModel dtm = (DefaultTableModel)utable.getModel();
+                        
+                        String[] items = {us.getId(),us.getName(),us.getEmail(),us.getTel(),us.getGender()};
+                        dtm.addRow(items);
+                        
+                        id.setText("");
+                        name.setText("");
+                        email.setText("");
+                        pwd.setText("");
+                        cpwd.setText("");
+                        tel.setText("");
+                        
+                    }else{
+                        sutext.setText("database error");
+                    } 
+                }else{
+                    sutext.setText("The passwors are did not match");
+                }
+            }
+        } catch (Exception e) {
+            sutext.setText("Did not run try");
+        }
+        
+    }//GEN-LAST:event_adminuserupdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,11 +599,16 @@ public final class Adduseradmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adduserbtn;
+    private javax.swing.JButton adduserreset;
+    private javax.swing.JButton adminuserdelete;
+    private javax.swing.JButton adminuseredit;
+    private javax.swing.JButton adminuserupdate;
     private javax.swing.JTextField cpwd;
     private javax.swing.JTextField email;
     private javax.swing.JComboBox<String> gender;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -393,4 +627,8 @@ public final class Adduseradmin extends javax.swing.JFrame {
     private javax.swing.JTextField tel;
     private javax.swing.JTable utable;
     // End of variables declaration//GEN-END:variables
+
+    private void setText(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

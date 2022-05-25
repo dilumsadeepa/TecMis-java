@@ -10,7 +10,7 @@ package tecmis;
  */
 public class Users {
     
-    public int id;
+    public String id;
     public String name;
     public String email;
     public String password;
@@ -18,11 +18,11 @@ public class Users {
     public String gender;
     public String level;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
