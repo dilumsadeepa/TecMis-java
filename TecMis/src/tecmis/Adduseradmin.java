@@ -4,10 +4,12 @@
  */
 package tecmis;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +24,8 @@ public final class Adduseradmin extends javax.swing.JFrame {
     
     DB db = new DB();
     Users us = new Users();
+    
+    public String upid = "";
     
     
             
@@ -102,6 +106,8 @@ public final class Adduseradmin extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setAutoscrolls(true);
+        jPanel1.setPreferredSize(new java.awt.Dimension(850, 700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -484,10 +490,31 @@ public final class Adduseradmin extends javax.swing.JFrame {
         int row = utable.getSelectedRow();
         if(row>0){
             
-            id.setText((String) utable.getValueAt(row, 0));
-            name.setText((String) utable.getValueAt(row, 1));
-            email.setText((String) utable.getValueAt(row, 2));
-            tel.setText((String) utable.getValueAt(row, 3));
+            try {
+                String id_num = (String) utable.getValueAt(row, 0);
+                /*name.setText((String) utable.getValueAt(row, 1));
+                email.setText((String) utable.getValueAt(row, 2));
+                tel.setText((String) utable.getValueAt(row, 3));*/
+                String qu = "SELECT * FROM users where id_num = '"+id_num+"'";
+                ResultSet rs = db.stm.executeQuery(qu);
+                
+                while(rs.next()){
+                    upid = rs.getString("id");
+                    id.setText(rs.getString("id_num"));
+                    name.setText(rs.getString("name"));
+                    email.setText(rs.getString("email"));
+                    pwd.setText(rs.getString("password"));
+                    cpwd.setText(rs.getString("password"));
+                    tel.setText(rs.getString("tel"));
+                    
+                    //Object[] row = {rs.getString("id_num"),rs.getString("name"),rs.getString("email"),rs.getInt("tel"),rs.getString("gender")};
+                    //model.addRow(row);
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             
         }else{
             sutext.setText("Select a row");
@@ -502,39 +529,35 @@ public final class Adduseradmin extends javax.swing.JFrame {
             us.setPassword(pwd.getText());
             us.setTel(tel.getText());
             us.setGender(gender.getSelectedItem().toString());
-            String roll = level.getSelectedItem().toString();
             
-            
-            
-            switch (roll) {
-                case "Admin":
-                    us.setLevel("1");
-                    break;
-                case "Technical Officer":
-                    us.setLevel("2");
-                    break;
-                case "Lecturer":
-                    us.setLevel("3");
-                    break;
-                case "Student":
-                    us.setLevel("4");
-                    break;
-                default:
-                    break;
-            }
-            
+          
+                     
             
         
         try {
-            
-            if(us.getId().equals("") || us.getName().equals("") || us.getEmail().equals("") || us.getPassword().equals("")|| us.getTel().equals("")|| us.getGender().equals("")){
+            System.out.println("try work");
+            if(us.getId().equals("") || us.getName().equals("") || us.getEmail().equals("") || us.getPassword().equals("")|| us.getTel().equals("") || us.getGender().equals("")){
                 sutext.setText("Error in getting data");
                 
             }else{
+                System.out.println("else word");
                 if (us.getPassword().equals(cpwd.getText())) {
-                   String sql = "insert into users (id_num,name,email,password,tel,gender,level) values ('"+us.getId()+"','"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"','"+us.getLevel()+"')";
-                
-                    int res = db.stm.executeUpdate(sql);
+                    
+                    String upsql = "UPDATE users SET id_num = ?, name = ?, email = ?, password = ?, tel = ?, gender = ? WHERE id = ?";
+                   //String sql = "insert into users (id_num,name,email,password,tel,gender,level) values ('"+us.getId()+"','"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"','"+us.getLevel()+"')";
+                   System.out.println("sql work");
+                   PreparedStatement st = db.conn.prepareStatement(upsql);
+                   
+                   st.setString(1, us.getId());
+                   st.setString(2, us.getName());
+                   st.setString(3, us.getEmail());
+                   st.setString(4, us.getPassword());
+                   st.setString(5, us.getTel());
+                   st.setString(6, us.getGender());
+                   st.setString(7, upid);
+                   
+                    int res = st.executeUpdate();
+                    System.out.println("sql run work");
                     if (res > 0) {
                         sutext.setText("User added Successfully");
                         DefaultTableModel dtm = (DefaultTableModel)utable.getModel();
