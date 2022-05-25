@@ -170,8 +170,9 @@ public class Login extends javax.swing.JFrame {
            if(result.next()){
                dispose();
                int level = result.getInt("level");
+               int id = result.getInt("id");
                if(level == 1){
-                   Admindashbord admin = new Admindashbord();
+                   Admindashboard admin = new Admindashboard(id);
                    admin.show();
                }else if(level == 2){
                    Tofficerdashbord toff = new Tofficerdashbord();
