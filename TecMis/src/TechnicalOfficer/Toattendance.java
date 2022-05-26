@@ -55,7 +55,7 @@ public class Toattendance extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         atype = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        viewatbtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         tatext = new javax.swing.JLabel();
@@ -170,8 +170,13 @@ public class Toattendance extends javax.swing.JFrame {
                 .addContainerGap(239, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(153, 255, 153));
-        jButton3.setText("View Attendance");
+        viewatbtn.setBackground(new java.awt.Color(153, 255, 153));
+        viewatbtn.setText("View Attendance");
+        viewatbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewatbtnActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(153, 255, 153));
         jButton4.setText("Delete");
@@ -190,7 +195,7 @@ public class Toattendance extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(tatext, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewatbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)))
                 .addGap(28, 28, 28))
@@ -201,7 +206,7 @@ public class Toattendance extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tatext, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewatbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -300,6 +305,12 @@ public class Toattendance extends javax.swing.JFrame {
         
     }//GEN-LAST:event_submitatActionPerformed
 
+    private void viewatbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewatbtnActionPerformed
+        // TODO add your handling code here:
+        Attendance2 at2 = new Attendance2();
+        at2.show();
+    }//GEN-LAST:event_viewatbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -343,7 +354,6 @@ public class Toattendance extends javax.swing.JFrame {
     private javax.swing.JTextField coid;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
@@ -360,5 +370,6 @@ public class Toattendance extends javax.swing.JFrame {
     private javax.swing.JTextField stid;
     private javax.swing.JButton submitat;
     private javax.swing.JLabel tatext;
+    private javax.swing.JButton viewatbtn;
     // End of variables declaration//GEN-END:variables
 }
