@@ -163,7 +163,7 @@ public class Login extends javax.swing.JFrame {
         
         try {
             
-            String sql = "select * from users where username = '"+luser+"' and password = '"+lpwd+"'";
+            String sql = "select * from users where email = '"+luser+"' and password = '"+lpwd+"'";
             
             ResultSet result = db.stm.executeQuery(sql);
 
@@ -178,8 +178,8 @@ public class Login extends javax.swing.JFrame {
                    Tofficerdashbord toff = new Tofficerdashbord();
                    toff.show();
                }else if(level == 3){
-                   //Lecturerdashboard lec = new Lecturerdashboard();
-                   //lec.show();
+                   lecturedashboard lec = new lecturedashboard(id);
+                   lec.show();
                }else if(level == 4){
                    Studentdashbord stu = new Studentdashbord();
                    stu.show();
