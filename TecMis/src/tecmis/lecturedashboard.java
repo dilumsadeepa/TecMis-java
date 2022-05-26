@@ -4,6 +4,9 @@
  */
 package tecmis;
 
+import java.sql.PreparedStatement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
@@ -13,8 +16,14 @@ public class lecturedashboard extends javax.swing.JFrame {
     /**
      * Creates new form lecturedashboard
      */
+    
+    DB db = new DB();
+    
+    
     public lecturedashboard() {
         initComponents();
+        
+        db.getconnect();
     }
 
     /**
@@ -48,13 +57,14 @@ public class lecturedashboard extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        upup = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        lecpwd = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        lecemail = new javax.swing.JTextArea();
+        ltext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 51, 255));
@@ -157,12 +167,12 @@ public class lecturedashboard extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("Update Username & Password");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("UPDATE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        upup.setBackground(new java.awt.Color(0, 0, 0));
+        upup.setForeground(new java.awt.Color(255, 255, 255));
+        upup.setText("UPDATE");
+        upup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                upupActionPerformed(evt);
             }
         });
 
@@ -174,13 +184,13 @@ public class lecturedashboard extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Password");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        lecpwd.setColumns(20);
+        lecpwd.setRows(5);
+        jScrollPane1.setViewportView(lecpwd);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        lecemail.setColumns(20);
+        lecemail.setRows(5);
+        jScrollPane2.setViewportView(lecemail);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -199,7 +209,7 @@ public class lecturedashboard extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(upup, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,15 +232,17 @@ public class lecturedashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(upup, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
+
+        ltext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -265,13 +277,17 @@ public class lecturedashboard extends javax.swing.JFrame {
                             .addGap(81, 81, 81)
                             .addComponent(jButton2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ltext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(19, 19, 19)
+                .addComponent(ltext)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
@@ -333,7 +349,7 @@ public class lecturedashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(362, 362, 362))
@@ -342,9 +358,55 @@ public class lecturedashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void upupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String lemail = lecemail.getText();
+        String lpwd = lecpwd.getText();
+        
+        
+        try {
+            
+            if(lemail.equals("") || lpwd.equals("")){
+                ltext.setText("Error in getting data");
+                
+            }else{
+                
+                  String upsql = "UPDATE users SET email = ?, password = ? WHERE id = ?";
+                   //String sql = "insert into users (id_num,name,email,password,tel,gender,level) values ('"+us.getId()+"','"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"','"+us.getLevel()+"')";
+                   System.out.println("sql work");
+                   PreparedStatement st = db.conn.prepareStatement(upsql);
+                   
+                   st.setString(1, lemail);
+                   st.setString(2, lpwd);
+                   st.setString(3, us.getEmail());
+                   
+                    int res = st.executeUpdate();
+                    System.out.println("sql run work");
+                    if (res > 0) {
+                        sutext.setText("User added Successfully");
+                        DefaultTableModel dtm = (DefaultTableModel)utable.getModel();
+                        
+                        String[] items = {us.getId(),us.getName(),us.getEmail(),us.getTel(),us.getGender()};
+                        dtm.addRow(items);
+                        
+                        id.setText("");
+                        name.setText("");
+                        email.setText("");
+                        pwd.setText("");
+                        cpwd.setText("");
+                        tel.setText("");
+                        
+                    }else{
+                        sutext.setText("database error");
+                    } 
+                
+            }
+        } catch (Exception e) {
+            sutext.setText("Did not run try");
+        }
+        
+        
+    }//GEN-LAST:event_upupActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -406,7 +468,6 @@ public class lecturedashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -433,7 +494,9 @@ public class lecturedashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea lecemail;
+    private javax.swing.JTextArea lecpwd;
+    private javax.swing.JLabel ltext;
+    private javax.swing.JButton upup;
     // End of variables declaration//GEN-END:variables
 }
