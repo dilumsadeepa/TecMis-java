@@ -4,6 +4,8 @@
  */
 package tecmis;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +23,33 @@ public class Admincourse extends javax.swing.JFrame {
     
     Course co = new Course();
     DB db = new DB();
+    public String cid;
     
     public Admincourse() {
         initComponents();
         
         db.getconnect();
+        codata();
+    }
+    
+    public void codata(){
+        try {
+            DefaultTableModel model = (DefaultTableModel)cotable.getModel();
+            
+            String qu = "SELECT * FROM courses";
+            ResultSet rs = db.stm.executeQuery(qu);
+            
+            while(rs.next()){
+                Object[] row = {rs.getString("cu_id"),rs.getString("cu_name"),rs.getString("cu_did")};
+                model.addRow(row);
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -52,9 +76,10 @@ public class Admincourse extends javax.swing.JFrame {
         coupbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         cotable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        codelete = new javax.swing.JButton();
+        coeditbtn = new javax.swing.JButton();
         costext = new javax.swing.JLabel();
+        clecopen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -91,10 +116,20 @@ public class Admincourse extends javax.swing.JFrame {
         coresetbtn.setBackground(new java.awt.Color(204, 0, 102));
         coresetbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         coresetbtn.setText("Reset");
+        coresetbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coresetbtnActionPerformed(evt);
+            }
+        });
 
         coupbtn.setBackground(new java.awt.Color(153, 0, 153));
         coupbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         coupbtn.setText("Update");
+        coupbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coupbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,17 +193,37 @@ public class Admincourse extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(cotable);
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Delete");
+        codelete.setBackground(new java.awt.Color(255, 0, 255));
+        codelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        codelete.setForeground(new java.awt.Color(255, 255, 255));
+        codelete.setText("Delete");
+        codelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codeleteActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(102, 0, 102));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Edit");
+        coeditbtn.setBackground(new java.awt.Color(102, 0, 102));
+        coeditbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        coeditbtn.setForeground(new java.awt.Color(255, 255, 255));
+        coeditbtn.setText("Edit");
+        coeditbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coeditbtnActionPerformed(evt);
+            }
+        });
 
         costext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        clecopen.setBackground(new java.awt.Color(153, 0, 153));
+        clecopen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        clecopen.setForeground(new java.awt.Color(255, 255, 255));
+        clecopen.setText("Add lecture to course");
+        clecopen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clecopenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,12 +233,16 @@ public class Admincourse extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(codelete)
                         .addGap(29, 29, 29)
-                        .addComponent(jButton5)))
-                .addGap(0, 27, Short.MAX_VALUE))
+                        .addComponent(coeditbtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(clecopen)
+                        .addGap(41, 41, 41))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,8 +262,9 @@ public class Admincourse extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton5))
+                            .addComponent(codelete)
+                            .addComponent(coeditbtn)
+                            .addComponent(clecopen))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -256,6 +316,127 @@ public class Admincourse extends javax.swing.JFrame {
         
     }//GEN-LAST:event_coaddbtnActionPerformed
 
+    private void coresetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coresetbtnActionPerformed
+        // TODO add your handling code here:
+        coid.setText("");
+        coname.setText("");
+        
+    }//GEN-LAST:event_coresetbtnActionPerformed
+
+    private void codeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeleteActionPerformed
+        // TODO add your handling code here:
+        int drow = cotable.getSelectedRow();
+        
+        if(drow > 0){
+            String cid = (String) cotable.getValueAt(drow, 0);
+                       
+            DefaultTableModel model = (DefaultTableModel)cotable.getModel();
+            model.removeRow(drow);
+            
+            String dsql = "delete from courses where cu_id ='"+cid+"'";
+            
+            try {
+                int rest = db.stm.executeUpdate(dsql);
+                if(rest > 0){
+                    costext.setText("Deleted successfully");
+                }else{
+                    costext.setText("Deleted Unsuccessfully");
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            costext.setText("Select a row");
+        }
+    }//GEN-LAST:event_codeleteActionPerformed
+
+    private void coeditbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coeditbtnActionPerformed
+        // TODO add your handling code here:
+        int row = cotable.getSelectedRow();
+        if(row>0){
+            
+            try {
+                String co_id = (String) cotable.getValueAt(row, 0);
+                String qu = "SELECT * FROM courses where cu_id = '"+co_id+"'";
+                ResultSet rs = db.stm.executeQuery(qu);
+                
+                while(rs.next()){
+                    cid = rs.getString("id");
+                    coid.setText(rs.getString("cu_id"));
+                    coname.setText(rs.getString("cu_name"));
+                    
+                    
+                    
+                }
+                DefaultTableModel model = (DefaultTableModel)cotable.getModel();
+                model.removeRow(row);
+            } catch (SQLException ex) {
+                Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }else{
+            costext.setText("Select a row");
+        }
+    }//GEN-LAST:event_coeditbtnActionPerformed
+
+    private void coupbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coupbtnActionPerformed
+        // TODO add your handling code here:
+            co.setCo_id(coid.getText());
+            co.setConame(coname.getText());
+            co.setDepid(codep.getSelectedItem().toString());
+            
+          
+                     
+            
+        
+        try {
+            
+            if(co.getCo_id().equals("") || co.getConame().equals("") || co.getDepid().equals("")){
+                costext.setText("Error in getting data");
+                
+            }else{
+                
+                
+                    
+                    String upsql = "UPDATE courses SET cu_id = ?, cu_name = ?, cu_did = ? WHERE id = ?";
+                  
+                  
+                   PreparedStatement st = db.conn.prepareStatement(upsql);
+                   
+                   st.setString(1, co.getCo_id());
+                   st.setString(2, co.getConame());
+                   st.setString(3, co.getDepid());
+                   st.setString(4, cid);
+                   
+                    int res = st.executeUpdate();
+                    
+                    if (res > 0) {
+                        costext.setText("User added Successfully");
+                        DefaultTableModel dtm = (DefaultTableModel)cotable.getModel();
+                        
+                        String[] items = {co.getCo_id(),co.getConame(),co.getDepid()};
+                        dtm.addRow(items);
+                        
+                        coid.setText("");
+                        coname.setText("");
+                        
+                    }else{
+                        costext.setText("database error");
+                    }
+            }
+        } catch (Exception e) {
+            costext.setText("Did not run try");
+        }
+    }//GEN-LAST:event_coupbtnActionPerformed
+
+    private void clecopenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clecopenActionPerformed
+        // TODO add your handling code here:
+        Coursetolec colec = new Coursetolec();
+        colec.show();
+    }//GEN-LAST:event_clecopenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -292,16 +473,17 @@ public class Admincourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clecopen;
     private javax.swing.JButton coaddbtn;
+    private javax.swing.JButton codelete;
     private javax.swing.JComboBox<String> codep;
+    private javax.swing.JButton coeditbtn;
     private javax.swing.JTextField coid;
     private javax.swing.JTextField coname;
     private javax.swing.JButton coresetbtn;
     private javax.swing.JLabel costext;
     private javax.swing.JTable cotable;
     private javax.swing.JButton coupbtn;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
