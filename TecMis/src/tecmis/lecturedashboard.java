@@ -5,6 +5,10 @@
 package tecmis;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,12 +22,37 @@ public class lecturedashboard extends javax.swing.JFrame {
      */
     
     DB db = new DB();
+    public int lecid; 
     
     
-    public lecturedashboard() {
+    public lecturedashboard(int id) {
         initComponents();
-        
+        lecid = id;
         db.getconnect();
+        loardempw();
+    }
+
+    private lecturedashboard() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public void loardempw(){
+        try {
+                   
+            String qu = "SELECT * FROM users WHERE id = '"+lecid+"'";
+            ResultSet rs = db.stm.executeQuery(qu);
+            
+            while(rs.next()){
+                lecemail.setText(rs.getString("email"));
+                lecpwd.setText(rs.getString("password"));
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -53,17 +82,15 @@ public class lecturedashboard extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        statvbtn = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         upup = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lecpwd = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lecemail = new javax.swing.JTextArea();
+        lecemail = new javax.swing.JTextField();
+        lecpwd = new javax.swing.JTextField();
         ltext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,7 +180,12 @@ public class lecturedashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("View");
+        statvbtn.setText("View");
+        statvbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statvbtnActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("View");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -184,14 +216,6 @@ public class lecturedashboard extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Password");
 
-        lecpwd.setColumns(20);
-        lecpwd.setRows(5);
-        jScrollPane1.setViewportView(lecpwd);
-
-        lecemail.setColumns(20);
-        lecemail.setRows(5);
-        jScrollPane2.setViewportView(lecemail);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -206,16 +230,16 @@ public class lecturedashboard extends javax.swing.JFrame {
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lecpwd, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(upup, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lecemail)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -225,12 +249,12 @@ public class lecturedashboard extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lecemail, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lecpwd, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(upup, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -270,13 +294,13 @@ public class lecturedashboard extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(statvbtn, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addGap(81, 81, 81)
                             .addComponent(jButton2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ltext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -309,7 +333,7 @@ public class lecturedashboard extends javax.swing.JFrame {
                                     .addComponent(jButton4))
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabel5)
@@ -317,7 +341,7 @@ public class lecturedashboard extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addGap(28, 28, 28)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(statvbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(26, 26, 26)
@@ -378,31 +402,28 @@ public class lecturedashboard extends javax.swing.JFrame {
                    
                    st.setString(1, lemail);
                    st.setString(2, lpwd);
-                   st.setString(3, us.getEmail());
+                   st.setInt(3, this.lecid);
                    
                     int res = st.executeUpdate();
-                    System.out.println("sql run work");
+                    
                     if (res > 0) {
-                        sutext.setText("User added Successfully");
-                        DefaultTableModel dtm = (DefaultTableModel)utable.getModel();
-                        
-                        String[] items = {us.getId(),us.getName(),us.getEmail(),us.getTel(),us.getGender()};
-                        dtm.addRow(items);
-                        
-                        id.setText("");
-                        name.setText("");
-                        email.setText("");
-                        pwd.setText("");
-                        cpwd.setText("");
-                        tel.setText("");
+                        ltext.setText("Updated Successfully");
+                        String qu = "SELECT * FROM users WHERE id = '"+lecid+"'";
+                        ResultSet rs = db.stm.executeQuery(qu);
+            
+                        while(rs.next()){
+                            lecemail.setText(rs.getString("email"));
+                            lecpwd.setText(rs.getString("password"));
+
+                        }
                         
                     }else{
-                        sutext.setText("database error");
+                        ltext.setText("database error");
                     } 
                 
             }
         } catch (Exception e) {
-            sutext.setText("Did not run try");
+            ltext.setText("Did not run try");
         }
         
         
@@ -431,6 +452,12 @@ public class lecturedashboard extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void statvbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statvbtnActionPerformed
+        // TODO add your handling code here:
+        LectureStudentAttendance lecat = new LectureStudentAttendance();
+        lecat.show();
+    }//GEN-LAST:event_statvbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,7 +500,6 @@ public class lecturedashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -491,12 +517,11 @@ public class lecturedashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea lecemail;
-    private javax.swing.JTextArea lecpwd;
+    private javax.swing.JTextField lecemail;
+    private javax.swing.JTextField lecpwd;
     private javax.swing.JLabel ltext;
+    private javax.swing.JButton statvbtn;
     private javax.swing.JButton upup;
     // End of variables declaration//GEN-END:variables
 }
