@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author acer
  */
-public class LectureStudentMarks extends javax.swing.JFrame {
+public final class LectureStudentMarks extends javax.swing.JFrame {
 
     /**
      * Creates new form StudentMarks
@@ -27,6 +27,29 @@ public class LectureStudentMarks extends javax.swing.JFrame {
         initComponents();
         
         db.getconnect();
+        
+        msetdatatotable();
+    }
+    
+    public void msetdatatotable(){
+        try {
+            DefaultTableModel model = (DefaultTableModel)mrtable.getModel();
+            
+            String qu = "SELECT * FROM cas";
+            ResultSet rs = db.stm.executeQuery(qu);
+            
+            while(rs.next()){
+                Object[] row = {rs.getString("c_suid"),rs.getString("c_cid"),rs.getInt("q1"),rs.getInt("q2"),rs.getInt("q3"),rs.getInt("q4"),rs.getInt("ass1"),rs.getInt("ass2"),rs.getInt("ass3"),rs.getInt("mid"),rs.getInt("fexam")};
+                model.addRow(row);
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -54,7 +77,7 @@ public class LectureStudentMarks extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         madd = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        mrreset = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         stid = new javax.swing.JTextField();
         serbtn = new javax.swing.JButton();
@@ -145,9 +168,14 @@ public class LectureStudentMarks extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("RESET");
+        mrreset.setBackground(new java.awt.Color(153, 153, 153));
+        mrreset.setForeground(new java.awt.Color(255, 255, 255));
+        mrreset.setText("RESET");
+        mrreset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrresetActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(153, 153, 153));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,7 +254,7 @@ public class LectureStudentMarks extends javax.swing.JFrame {
                                         .addGroup(jPanel3Layout.createSequentialGroup()
                                             .addComponent(madd)
                                             .addGap(34, 34, 34)
-                                            .addComponent(jButton2)
+                                            .addComponent(mrreset)
                                             .addGap(50, 50, 50)
                                             .addComponent(jButton3))))))
                         .addGap(0, 31, Short.MAX_VALUE))
@@ -288,7 +316,7 @@ public class LectureStudentMarks extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton2)
+                    .addComponent(mrreset)
                     .addComponent(madd))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel7))
@@ -488,6 +516,20 @@ public class LectureStudentMarks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mdeleteActionPerformed
 
+    private void mrresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrresetActionPerformed
+        // TODO add your handling code here:
+                cid.setText("");
+                q1.setText("");
+                q2.setText("");
+                q3.setText("");
+                q4.setText("");
+                ass1.setText("");
+                ass2.setText("");
+                ass3.setText("");
+                mid.setText("");
+                fexam.setText("");
+    }//GEN-LAST:event_mrresetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -530,7 +572,6 @@ public class LectureStudentMarks extends javax.swing.JFrame {
     private javax.swing.JTextField ass3;
     private javax.swing.JTextField cid;
     private javax.swing.JTextField fexam;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -553,6 +594,7 @@ public class LectureStudentMarks extends javax.swing.JFrame {
     private javax.swing.JButton madd;
     private javax.swing.JButton mdelete;
     private javax.swing.JTextField mid;
+    private javax.swing.JButton mrreset;
     private javax.swing.JTable mrtable;
     private javax.swing.JLabel mtext;
     private javax.swing.JTextField q1;

@@ -9,34 +9,36 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-
+import tecmis.Adduseradmin;
 import tecmis.DB;
 
 /**
  *
  * @author prema
  */
-public class Attendance2 extends javax.swing.JFrame {
+public final class viewmedicl extends javax.swing.JFrame {
 
     /**
-     * Creates new form Attendance2
+     * Creates new form viewmedicl
      */
     DB db = new DB();
     
-    public Attendance2() {
+    public viewmedicl() {
         initComponents();
+        
         db.getconnect();
+        mcodata();
     }
     
-    public void scodata(){
+    public void mcodata(){
         try {
-            DefaultTableModel model = (DefaultTableModel)atdtable.getModel();
+            DefaultTableModel model = (DefaultTableModel)metable.getModel();
             
-            String qu = "SELECT * FROM attendances";
+            String qu = "SELECT * FROM medicals";
             ResultSet rs = db.stm.executeQuery(qu);
             
             while(rs.next()){
-                Object[] row = {rs.getString("at_type"),rs.getString("at_date"),rs.getString("at_status"),rs.getString("at_st_id"),rs.getString("at_sub_id")};
+                Object[] row = {rs.getString("me_st_id"),rs.getString("me_sub_id"),rs.getString("me_type")};
                 model.addRow(row);
                 
             }
@@ -44,7 +46,7 @@ public class Attendance2 extends javax.swing.JFrame {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(Attendance2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -59,73 +61,58 @@ public class Attendance2 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        back7 = new javax.swing.JButton();
+        back9 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        atdtable = new javax.swing.JTable();
+        metable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel1.setText("Students Attendance ");
+        jLabel1.setText("Medical");
 
-        back7.setText("Back");
-        back7.addActionListener(new java.awt.event.ActionListener() {
+        back9.setText("Back");
+        back9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back7ActionPerformed(evt);
+                back9ActionPerformed(evt);
             }
         });
 
-        atdtable.setModel(new javax.swing.table.DefaultTableModel(
+        metable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "at_type", "at_date", "at_status", "at_st_id", "at_sub_id"
+                "Student ID", "course", "Type"
             }
         ));
-        atdtable.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                atdtableAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jScrollPane1.setViewportView(atdtable);
+        jScrollPane1.setViewportView(metable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(back9)
+                        .addGap(159, 159, 159)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(back7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(21, 21, 21))
+                        .addGap(76, 76, 76)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(back7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(back9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,17 +129,11 @@ public class Attendance2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void back7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back7ActionPerformed
+    private void back9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back9ActionPerformed
         // TODO add your handling code here:
-        Toattendance back2 = new Toattendance();
-        back2.show();
-    }//GEN-LAST:event_back7ActionPerformed
-
-    private void atdtableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_atdtableAncestorAdded
-        // TODO add your handling code here:
-        
-    
-    }//GEN-LAST:event_atdtableAncestorAdded
+        Medical med = new Medical();
+        med.show();
+    }//GEN-LAST:event_back9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,29 +152,29 @@ public class Attendance2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Attendance2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewmedicl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Attendance2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewmedicl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Attendance2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewmedicl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Attendance2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(viewmedicl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Attendance2().setVisible(true);
+                new viewmedicl().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable atdtable;
-    private javax.swing.JButton back7;
+    private javax.swing.JButton back9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable metable;
     // End of variables declaration//GEN-END:variables
 }
