@@ -16,7 +16,7 @@ import tecmis.DB;
  *
  * @author prema
  */
-public class viewmedicl extends javax.swing.JFrame {
+public final class viewmedicl extends javax.swing.JFrame {
 
     /**
      * Creates new form viewmedicl
@@ -38,7 +38,7 @@ public class viewmedicl extends javax.swing.JFrame {
             ResultSet rs = db.stm.executeQuery(qu);
             
             while(rs.next()){
-                Object[] row = {rs.getString("id"),rs.getString("me_type"),rs.getString("me_date"),rs.getString("me_sub_id"),rs.getString("me_st_id")};
+                Object[] row = {rs.getString("me_st_id"),rs.getString("me_sub_id"),rs.getString("me_type")};
                 model.addRow(row);
                 
             }
@@ -79,13 +79,10 @@ public class viewmedicl extends javax.swing.JFrame {
 
         metable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "id", "me_type", "me_date", "me_sub_id", "me_st_id"
+                "Student ID", "course", "Type"
             }
         ));
         jScrollPane1.setViewportView(metable);
