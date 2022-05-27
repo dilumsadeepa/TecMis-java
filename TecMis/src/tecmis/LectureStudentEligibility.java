@@ -4,11 +4,19 @@
  */
 package tecmis;
 
+import java.awt.Component;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author acer
  */
 public class LectureStudentEligibility extends javax.swing.JFrame {
+
+    private JTextArea jTextArea2;
+    private JScrollPane jScrollPane3;
+    private Component jScrollPane4;
 
     /**
      * Creates new form LectureStudentEligibility
@@ -33,6 +41,8 @@ public class LectureStudentEligibility extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         eser = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextPane3 = new javax.swing.JTextPane();
@@ -90,6 +100,10 @@ public class LectureStudentEligibility extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("CA marks");
 
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
+
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Eligibility");
 
@@ -140,9 +154,9 @@ public class LectureStudentEligibility extends javax.swing.JFrame {
                     .addComponent(eser))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
