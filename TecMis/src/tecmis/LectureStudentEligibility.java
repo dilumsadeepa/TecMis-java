@@ -4,6 +4,12 @@
  */
 package tecmis;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
@@ -13,6 +19,9 @@ public class LectureStudentEligibility extends javax.swing.JFrame {
     /**
      * Creates new form LectureStudentEligibility
      */
+    
+    DB db = new DB();
+    
     public LectureStudentEligibility() {
         initComponents();
     }
@@ -222,6 +231,24 @@ public class LectureStudentEligibility extends javax.swing.JFrame {
     private void eserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eserActionPerformed
         // TODO add your handling code here:
         String esid = sid.getText();
+        String ecid = cid.getText();
+        
+        try {
+
+            String qu = "SELECT * FROM users";
+            ResultSet rs = db.stm.executeQuery(qu);
+            
+            while(rs.next()){
+                Object[] row = {rs.getString("id_num"),rs.getString("name"),rs.getString("email"),rs.getInt("tel"),rs.getString("gender")};
+                
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_eserActionPerformed
 
     /**
