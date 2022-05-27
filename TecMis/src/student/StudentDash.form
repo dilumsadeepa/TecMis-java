@@ -131,6 +131,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="PROFILE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profileActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="attendance">
           <Properties>
@@ -145,6 +148,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="ATTENDANCE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attendanceActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="medical">
           <Properties>
@@ -173,6 +179,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="TIME TABLE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timetableActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="grade">
           <Properties>
@@ -201,6 +210,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="COURSE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="courseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="home">
           <Properties>
@@ -215,6 +227,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="HOME"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="notice">
           <Properties>
@@ -229,6 +244,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="NOTICE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noticeActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

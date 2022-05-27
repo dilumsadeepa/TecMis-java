@@ -40,11 +40,21 @@ public class StudentDash extends javax.swing.JFrame {
         profile.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("PROFILE");
+        profile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileActionPerformed(evt);
+            }
+        });
 
         attendance.setBackground(new java.awt.Color(0, 0, 0));
         attendance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         attendance.setForeground(new java.awt.Color(255, 255, 255));
         attendance.setText("ATTENDANCE");
+        attendance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attendanceActionPerformed(evt);
+            }
+        });
 
         medical.setBackground(new java.awt.Color(0, 0, 0));
         medical.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -55,6 +65,11 @@ public class StudentDash extends javax.swing.JFrame {
         timetable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         timetable.setForeground(new java.awt.Color(255, 255, 255));
         timetable.setText("TIME TABLE");
+        timetable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timetableActionPerformed(evt);
+            }
+        });
 
         grade.setBackground(new java.awt.Color(0, 0, 0));
         grade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -65,16 +80,31 @@ public class StudentDash extends javax.swing.JFrame {
         course.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         course.setForeground(new java.awt.Color(255, 255, 255));
         course.setText("COURSE");
+        course.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courseActionPerformed(evt);
+            }
+        });
 
         home.setBackground(new java.awt.Color(255, 0, 0));
         home.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         home.setForeground(new java.awt.Color(255, 255, 255));
         home.setText("HOME");
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
 
         notice.setBackground(new java.awt.Color(0, 0, 0));
         notice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         notice.setForeground(new java.awt.Color(255, 255, 255));
         notice.setText("NOTICE");
+        notice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noticeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,6 +172,30 @@ public class StudentDash extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void attendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attendanceActionPerformed
+
+    private void timetableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timetableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timetableActionPerformed
+
+    private void courseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_courseActionPerformed
+
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileActionPerformed
+
+    private void noticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noticeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noticeActionPerformed
 
     
     public static void main(String args[]) {
