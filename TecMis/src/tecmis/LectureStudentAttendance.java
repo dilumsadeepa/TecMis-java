@@ -91,7 +91,7 @@ public class LectureStudentAttendance extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Attendance Prackticle");
+        jLabel2.setText("Attendance Practical");
 
         atser.setBackground(new java.awt.Color(153, 153, 153));
         atser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -110,7 +110,7 @@ public class LectureStudentAttendance extends javax.swing.JFrame {
         jLabel5.setText("Course ID");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Attendance Thiary");
+        jLabel6.setText("Attendance Theory");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Full Attendance");
