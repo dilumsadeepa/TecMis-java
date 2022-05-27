@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import tecmis.Adduseradmin;
+
 import tecmis.DB;
 
 /**
@@ -30,7 +30,7 @@ public class Attendance2 extends javax.swing.JFrame {
     
     public void scodata(){
         try {
-            DefaultTableModel model = (DefaultTableModel)stattend.getModel();
+            DefaultTableModel model = (DefaultTableModel)atdtable.getModel();
             
             String qu = "SELECT * FROM attendances";
             ResultSet rs = db.stm.executeQuery(qu);
@@ -44,7 +44,7 @@ public class Attendance2 extends javax.swing.JFrame {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Attendance2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -61,7 +61,7 @@ public class Attendance2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         back7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        stattend = new javax.swing.JTable();
+        atdtable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +77,7 @@ public class Attendance2 extends javax.swing.JFrame {
             }
         });
 
-        stattend.setModel(new javax.swing.table.DefaultTableModel(
+        atdtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -88,16 +88,16 @@ public class Attendance2 extends javax.swing.JFrame {
                 "at_type", "at_date", "at_status", "at_st_id", "at_sub_id"
             }
         ));
-        stattend.addAncestorListener(new javax.swing.event.AncestorListener() {
+        atdtable.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                stattendAncestorAdded(evt);
+                atdtableAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(stattend);
+        jScrollPane1.setViewportView(atdtable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,11 +148,11 @@ public class Attendance2 extends javax.swing.JFrame {
         back2.show();
     }//GEN-LAST:event_back7ActionPerformed
 
-    private void stattendAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_stattendAncestorAdded
+    private void atdtableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_atdtableAncestorAdded
         // TODO add your handling code here:
         
     
-    }//GEN-LAST:event_stattendAncestorAdded
+    }//GEN-LAST:event_atdtableAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -190,10 +190,10 @@ public class Attendance2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable atdtable;
     private javax.swing.JButton back7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable stattend;
     // End of variables declaration//GEN-END:variables
 }

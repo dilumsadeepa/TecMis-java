@@ -187,6 +187,8 @@ public final class LectureStudentMarks extends javax.swing.JFrame {
             }
         });
 
+        serbtn.setBackground(new java.awt.Color(153, 153, 153));
+        serbtn.setForeground(new java.awt.Color(255, 255, 255));
         serbtn.setText("Search");
         serbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
