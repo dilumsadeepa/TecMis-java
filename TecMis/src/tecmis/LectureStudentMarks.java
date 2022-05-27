@@ -27,6 +27,7 @@ public final class LectureStudentMarks extends javax.swing.JFrame {
         initComponents();
         
         db.getconnect();
+        //com
         
         msetdatatotable();
     }
@@ -346,6 +347,7 @@ public final class LectureStudentMarks extends javax.swing.JFrame {
         jButton5.setText("EDIT");
 
         mtext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mtext.setText("sd");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
