@@ -36,7 +36,7 @@ public class Attendance2 extends javax.swing.JFrame {
             ResultSet rs = db.stm.executeQuery(qu);
             
             while(rs.next()){
-                Object[] row = {rs.getString("id"),rs.getString("at_type"),rs.getString("at_date"),rs.getString("at_status"),rs.getString("at_st_id"),rs.getString("at_sub_id")};
+                Object[] row = {rs.getString("at_type"),rs.getString("at_date"),rs.getString("at_status"),rs.getString("at_st_id"),rs.getString("at_sub_id")};
                 model.addRow(row);
                 
             }
@@ -79,13 +79,13 @@ public class Attendance2 extends javax.swing.JFrame {
 
         stattend.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Status", "Monday", "tuesday", "wednesday", "thursday", "Friday"
+                "stid", "at_type", "at_date", "at_status", "at_st_id", "at_sub_id"
             }
         ));
         stattend.addAncestorListener(new javax.swing.event.AncestorListener() {
