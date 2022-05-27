@@ -19,14 +19,14 @@ public class Marks {
     public int ass1;
     public int ass2;
     public int ass3;
-    
+
     public String getStid() {
         return stid;
     }
-    
+
     public void setStid(String stid) {
         this.stid = stid;
-}
+    }
 
     public String getCid() {
         return cid;
