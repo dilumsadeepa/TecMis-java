@@ -178,8 +178,8 @@ public class Login extends javax.swing.JFrame {
                    Tofficerdashbord toff = new Tofficerdashbord();
                    toff.show();
                }else if(level == 3){
-                   lecturedashboard lec = new lecturedashboard(id);
-                   lec.show();
+                   //lecturedashboard lec = new lecturedashboard(id);
+                   //lec.show();
                }else if(level == 4){
                    Studentdashbord stu = new Studentdashbord();
                    stu.show();
