@@ -26,6 +26,7 @@ public class Medical extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -36,16 +37,18 @@ public class Medical extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         theory = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        upmed = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         studentid = new javax.swing.JTextField();
         coursid = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        deletemed = new javax.swing.JButton();
+        viewmed = new javax.swing.JButton();
         back8 = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,8 +68,13 @@ public class Medical extends javax.swing.JFrame {
 
         theory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theory", "Practical" }));
 
-        jButton2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        jButton2.setText("Upload Medical");
+        upmed.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        upmed.setText("Upload Medical");
+        upmed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upmedActionPerformed(evt);
+            }
+        });
 
         reset.setText("Reset");
         reset.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +108,7 @@ public class Medical extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(reset)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jButton2))
+                                    .addComponent(upmed))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,23 +152,33 @@ public class Medical extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reset)
-                    .addComponent(jButton2))
+                    .addComponent(upmed))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
-        jButton5.setBackground(new java.awt.Color(0, 204, 204));
-        jButton5.setText("Update Medical");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        update.setBackground(new java.awt.Color(0, 204, 204));
+        update.setText("Update Medical");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(0, 204, 204));
-        jButton6.setText("Delete Medical");
+        deletemed.setBackground(new java.awt.Color(0, 204, 204));
+        deletemed.setText("Delete Medical");
+        deletemed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletemedActionPerformed(evt);
+            }
+        });
 
-        jButton7.setBackground(new java.awt.Color(0, 204, 204));
-        jButton7.setText("Views Medicals");
+        viewmed.setBackground(new java.awt.Color(0, 204, 204));
+        viewmed.setText("Views Medicals");
+        viewmed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewmedActionPerformed(evt);
+            }
+        });
 
         back8.setText("Back");
         back8.addActionListener(new java.awt.event.ActionListener() {
@@ -185,9 +203,9 @@ public class Medical extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deletemed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewmed, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,11 +225,11 @@ public class Medical extends javax.swing.JFrame {
                         .addGap(54, 54, 54))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deletemed, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewmed, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -233,9 +251,11 @@ public class Medical extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        viewmedicl medi = new viewmedicl();
+        medi.show();
+    }//GEN-LAST:event_updateActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
@@ -251,6 +271,22 @@ public class Medical extends javax.swing.JFrame {
         techoffidashb back8 = new techoffidashb();
         back8.show();
     }//GEN-LAST:event_back8ActionPerformed
+
+    private void deletemedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletemedActionPerformed
+        // TODO add your handling code here:
+        viewmedicl delemed = new viewmedicl();
+        delemed.show();
+    }//GEN-LAST:event_deletemedActionPerformed
+
+    private void viewmedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewmedActionPerformed
+        // TODO add your handling code here:
+        viewmedicl viewmed = new viewmedicl();
+        viewmed.show();
+    }//GEN-LAST:event_viewmedActionPerformed
+
+    private void upmedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upmedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upmedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,10 +326,8 @@ public class Medical extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back8;
     private javax.swing.JTextField coursid;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton deletemed;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -308,5 +342,8 @@ public class Medical extends javax.swing.JFrame {
     private javax.swing.JButton reset;
     private javax.swing.JTextField studentid;
     private javax.swing.JComboBox<String> theory;
+    private javax.swing.JButton update;
+    private javax.swing.JButton upmed;
+    private javax.swing.JButton viewmed;
     // End of variables declaration//GEN-END:variables
 }
