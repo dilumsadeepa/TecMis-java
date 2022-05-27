@@ -101,8 +101,10 @@ public final class Adduseradmin extends javax.swing.JFrame {
         adminuserdelete = new javax.swing.JButton();
         sutext = new javax.swing.JLabel();
         adminuseredit = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -324,7 +326,7 @@ public final class Adduseradmin extends javax.swing.JFrame {
 
         sutext.setBackground(new java.awt.Color(0, 255, 255));
         sutext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPanel1.add(sutext, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 280, 30));
+        jPanel1.add(sutext, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 280, 30));
 
         adminuseredit.setBackground(new java.awt.Color(255, 0, 255));
         adminuseredit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -336,20 +338,27 @@ public final class Adduseradmin extends javax.swing.JFrame {
         });
         jPanel1.add(adminuseredit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
+        jButton1.setText("close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void adduserbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adduserbtnActionPerformed
@@ -585,6 +594,11 @@ public final class Adduseradmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_adminuserupdateActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -630,6 +644,7 @@ public final class Adduseradmin extends javax.swing.JFrame {
     private javax.swing.JTextField email;
     private javax.swing.JComboBox<String> gender;
     private javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

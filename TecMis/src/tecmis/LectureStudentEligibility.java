@@ -58,6 +58,7 @@ public final class LectureStudentEligibility extends javax.swing.JFrame {
         acid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -237,6 +238,7 @@ public final class LectureStudentEligibility extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void eserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eserActionPerformed

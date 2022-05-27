@@ -33,6 +33,7 @@ public class Timetabletecnicalofficer extends javax.swing.JFrame {
         back5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 

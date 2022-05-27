@@ -100,6 +100,7 @@ public final class LectureStudentMarks extends javax.swing.JFrame {
         mtext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 659));
@@ -420,6 +421,7 @@ public final class LectureStudentMarks extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
