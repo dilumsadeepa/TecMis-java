@@ -50,17 +50,14 @@
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jButton1" min="-2" pref="93" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="238" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -70,10 +67,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="27" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButton1" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -101,18 +95,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="66" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Back"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Home"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -292,11 +275,17 @@
                       <EmptySpace pref="35" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="tatext" pref="216" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                          <Component id="viewattence" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton5" alignment="1" pref="216" max="32767" attributes="0"/>
+=======
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton3" max="32767" attributes="0"/>
+                              <Component id="viewatbtn" max="32767" attributes="0"/>
                               <Component id="jButton4" max="32767" attributes="0"/>
                               <Component id="jButton5" alignment="1" pref="216" max="32767" attributes="0"/>
                           </Group>
+>>>>>>> 285855e487492099b0c607df3ad4424262013800
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
@@ -308,7 +297,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tatext" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="33" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                      <Component id="viewattence" min="-2" pref="33" max="-2" attributes="0"/>
+=======
+                      <Component id="viewatbtn" min="-2" pref="33" max="-2" attributes="0"/>
+>>>>>>> 285855e487492099b0c607df3ad4424262013800
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButton4" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -319,13 +312,24 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton3">
+<<<<<<< HEAD
+            <Component class="javax.swing.JButton" name="viewattence">
+=======
+            <Component class="javax.swing.JButton" name="viewatbtn">
+>>>>>>> 285855e487492099b0c607df3ad4424262013800
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="ff" red="99" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Attendance"/>
               </Properties>
+              <Events>
+<<<<<<< HEAD
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewattenceActionPerformed"/>
+=======
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewatbtnActionPerformed"/>
+>>>>>>> 285855e487492099b0c607df3ad4424262013800
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
