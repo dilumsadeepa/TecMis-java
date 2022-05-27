@@ -70,8 +70,8 @@ public class LectureStudentMarks extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         cid = new javax.swing.JTextField();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        mrtable = new javax.swing.JTable();
+        mdelete = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         mtext = new javax.swing.JLabel();
 
@@ -294,22 +294,24 @@ public class LectureStudentMarks extends javax.swing.JFrame {
                 .addComponent(jLabel7))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        mrtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Stu_id", "Q1", "Q2", "Q3", "Q4", "ASS1", "ASS2", "ASS3", "ASS4", "Mid", "Final"
+                "Student", "Course", "Q1", "Q2", "Q3", "Q4", "ASS1", "ASS2", "ASS3", "Mid", "Final"
             }
         ));
-        jScrollPane11.setViewportView(jTable1);
+        jScrollPane11.setViewportView(mrtable);
 
-        jButton4.setBackground(new java.awt.Color(153, 153, 153));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("DELETE");
+        mdelete.setBackground(new java.awt.Color(153, 153, 153));
+        mdelete.setForeground(new java.awt.Color(255, 255, 255));
+        mdelete.setText("DELETE");
+        mdelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mdeleteActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(153, 153, 153));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -333,7 +335,7 @@ public class LectureStudentMarks extends javax.swing.JFrame {
                                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(jButton4)
+                                .addComponent(mdelete)
                                 .addGap(60, 60, 60)
                                 .addComponent(jButton5)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -357,7 +359,7 @@ public class LectureStudentMarks extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton5)
-                            .addComponent(jButton4))
+                            .addComponent(mdelete))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56))))
@@ -413,38 +415,78 @@ public class LectureStudentMarks extends javax.swing.JFrame {
 
     private void maddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maddActionPerformed
         // TODO add your handling code here:
+        
         mr.setStid(stid.getText());
+        
         mr.setCid(cid.getText());
-        mr.setQ1(Integer.parseInt(this.q1.getText()));
+        
+        mr.setQ1(Integer.parseInt(q1.getText()));
+        
         mr.setQ2(Integer.parseInt(q2.getText()));
-        mr.setQ3(Integer.parseInt(q2.getText()));
+        
+        mr.setQ3(Integer.parseInt(q3.getText()));
+        
         mr.setQ4(Integer.parseInt(q4.getText()));
+        
         mr.setAss1(Integer.parseInt(ass1.getText()));
+        
         mr.setAss2(Integer.parseInt(ass2.getText()));
+        
         mr.setAss3(Integer.parseInt(ass3.getText()));
+        
         mr.setMid(Integer.parseInt(mid.getText()));
+        
         mr.setFexam(Integer.parseInt(fexam.getText()));
+      
         
-        
-        try {
-                   String sql = "insert into cas (id_num,name,email,password,tel,gender,level) values ('"+us.getId()+"','"+us.getName()+"','"+us.getEmail()+"','"+us.getPassword()+"','"+us.getTel()+"','"+us.getGender()+"','"+us.getLevel()+"')";
+      try {
+                   String sql = "insert into cas (c_suid,c_cid,q1,q2,q3,q4,ass1,ass2,ass3,mid,fexam) values ('"+mr.getStid()+"','"+mr.getCid()+"','"+mr.getQ1()+"','"+mr.getQ2()+"','"+mr.getQ3()+"','"+mr.getQ4()+"','"+mr.getAss1()+"','"+mr.getAss2()+"','"+mr.getAss3()+"','"+mr.getMid()+"','"+mr.getFexam()+"')";
                 
-                    int res = db.stm.executeUpdate(sql);
-                    if (res > 0) {
-                        mtext.setText("User added Successfully");
-                        DefaultTableModel dtm = (DefaultTableModel)utable.getModel();
-                        
-                        String[] items = {us.getId(),us.getName(),us.getEmail(),us.getTel(),us.getGender()};
-                        dtm.addRow(items);
-                        
-                        
-                        
-                    
+                    int res;
             
-        } catch (Exception e) {
-            mtext.setText("Did not run try");
-        }
+                    res = db.stm.executeUpdate(sql);
+                    
+                    if (res > 0) {
+                        mtext.setText("Marks added Successfully");
+                        DefaultTableModel dtm = (DefaultTableModel)mrtable.getModel();
+                        
+                        Object[] items = {mr.getStid(),mr.getCid(),mr.getQ1(),mr.getQ2(),mr.getQ3(),mr.getQ4(),mr.getAss1(),mr.getAss2(),mr.getAss3(),mr.getMid(),mr.getFexam()};
+                        dtm.addRow(items);
+                    }
+         } catch (SQLException ex) {
+                Logger.getLogger(LectureStudentMarks.class.getName()).log(Level.SEVERE, null, ex);
+            }               
+
     }//GEN-LAST:event_maddActionPerformed
+
+    private void mdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdeleteActionPerformed
+        // TODO add your handling code here:
+        int drow = mrtable.getSelectedRow();
+        
+        if(drow > 0){
+            String uid = (String) mrtable.getValueAt(drow, 0);
+            String cid = (String) mrtable.getValueAt(drow, 1);
+                       
+            DefaultTableModel model = (DefaultTableModel)mrtable.getModel();
+            model.removeRow(drow);
+            
+            String dsql = "delete from cas where c_suid ='"+uid+"' AND c_cid = '"+cid+"'";
+            
+            try {
+                int rest = db.stm.executeUpdate(dsql);
+                if(rest > 0){
+                    mtext.setText("Deleted successfully");
+                }else{
+                    mtext.setText("Deleted Unsuccessfully");
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            mtext.setText("Select a row");
+        }
+    }//GEN-LAST:event_mdeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,7 +532,6 @@ public class LectureStudentMarks extends javax.swing.JFrame {
     private javax.swing.JTextField fexam;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -509,9 +550,10 @@ public class LectureStudentMarks extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton madd;
+    private javax.swing.JButton mdelete;
     private javax.swing.JTextField mid;
+    private javax.swing.JTable mrtable;
     private javax.swing.JLabel mtext;
     private javax.swing.JTextField q1;
     private javax.swing.JTextField q2;

@@ -59,7 +59,7 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mdelete" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                   <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -91,7 +91,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="mdelete" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane11" min="-2" pref="411" max="-2" attributes="0"/>
@@ -485,11 +485,12 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="mrtable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="11" rowCount="4">
-                    <Column editable="true" title="Stu_id" type="java.lang.Object"/>
+                  <Table columnCount="11" rowCount="1">
+                    <Column editable="true" title="Student" type="java.lang.Object"/>
+                    <Column editable="true" title="Course" type="java.lang.Object"/>
                     <Column editable="true" title="Q1" type="java.lang.Object"/>
                     <Column editable="true" title="Q2" type="java.lang.Object"/>
                     <Column editable="true" title="Q3" type="java.lang.Object"/>
@@ -497,7 +498,6 @@
                     <Column editable="true" title="ASS1" type="java.lang.Object"/>
                     <Column editable="true" title="ASS2" type="java.lang.Object"/>
                     <Column editable="true" title="ASS3" type="java.lang.Object"/>
-                    <Column editable="true" title="ASS4" type="java.lang.Object"/>
                     <Column editable="true" title="Mid" type="java.lang.Object"/>
                     <Column editable="true" title="Final" type="java.lang.Object"/>
                   </Table>
@@ -568,7 +568,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="mdelete">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -578,6 +578,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DELETE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mdeleteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
