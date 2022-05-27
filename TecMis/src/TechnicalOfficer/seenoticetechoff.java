@@ -116,7 +116,7 @@ public class seenoticetechoff extends javax.swing.JFrame {
 
     private void back4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back4ActionPerformed
         // TODO add your handling code here:
-        techoffidashb notice = new techoffidashb();
+        Techoffidashb notice = new Techoffidashb();
         notice.show();
     }//GEN-LAST:event_back4ActionPerformed
 

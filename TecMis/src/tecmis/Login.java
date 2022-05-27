@@ -4,8 +4,14 @@
  */
 package tecmis;
 
+import TechnicalOfficer.Techoffidashb;
 import java.sql.*;
 ;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -175,7 +181,7 @@ public class Login extends javax.swing.JFrame {
                    Admindashboard admin = new Admindashboard(id);
                    admin.show();
                }else if(level == 2){
-                   Tofficerdashbord toff = new Tofficerdashbord();
+                   Techoffidashb toff = new Techoffidashb(id);
                    toff.show();
                }else if(level == 3){
                    //lecturedashboard lec = new lecturedashboard(id);

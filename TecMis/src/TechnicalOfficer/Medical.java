@@ -268,7 +268,7 @@ public class Medical extends javax.swing.JFrame {
 
     private void back8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back8ActionPerformed
         // TODO add your handling code here:
-        techoffidashb back8 = new techoffidashb();
+        Techoffidashb back8 = new Techoffidashb();
         back8.show();
     }//GEN-LAST:event_back8ActionPerformed
 
