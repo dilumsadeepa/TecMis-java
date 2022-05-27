@@ -4,6 +4,15 @@
  */
 package TechnicalOfficer;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import tecmis.Adduseradmin;
+import tecmis.DB;
+
 /**
  *
  * @author prema
@@ -13,9 +22,41 @@ public class Changepassword extends javax.swing.JFrame {
     /**
      * Creates new form Changepassword
      */
-    public Changepassword() {
+    
+    public int tid;
+    DB db = new DB();
+    
+    public Changepassword(int id) {
         initComponents();
+         tid = id;
     }
+    
+    public void setdatatotable(){
+        try {
+            
+            
+            String qu = "SELECT * FROM users WHERE id = '"+tid+"'";
+            ResultSet rs = db.stm.executeQuery(qu);
+            
+            while(rs.next()){
+                email.setText(rs.getString("email"));
+                pwd.setText(rs.getString("password"));
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Adduseradmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    private Changepassword() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,10 +73,11 @@ public class Changepassword extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         email = new javax.swing.JPasswordField();
         pwd = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        uppwd = new javax.swing.JButton();
         clear4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         back6 = new javax.swing.JButton();
+        ttext = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,11 +93,11 @@ public class Changepassword extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Update Password");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        uppwd.setText("Update Password");
+        uppwd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        uppwd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                uppwdActionPerformed(evt);
             }
         });
 
@@ -70,7 +112,7 @@ public class Changepassword extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel4.setText("Change Password");
 
-        back6.setText("Back");
+        back6.setText("cancel");
         back6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         back6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,19 +125,11 @@ public class Changepassword extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(back6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(uppwd)
                         .addGap(37, 37, 37)
                         .addComponent(clear4)
                         .addGap(177, 177, 177))
@@ -110,13 +144,25 @@ public class Changepassword extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(107, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(back6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ttext, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(140, 140, 140))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(back6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(back6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(ttext, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(69, 69, 69)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -128,7 +174,7 @@ public class Changepassword extends javax.swing.JFrame {
                     .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(uppwd)
                     .addComponent(clear4))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
@@ -164,9 +210,49 @@ public class Changepassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void uppwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uppwdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+            String temail = email.getText();
+            String tpwd = pwd.getText();
+            
+            
+          
+                     
+            
+        
+        try {
+            
+            if(temail.equals("") || tpwd.equals("")){
+                ttext.setText("Error in getting data");
+                
+            }else{
+                                
+                    
+                    String upsql = "UPDATE users SET email = ?, password = ? WHERE id = ?";
+                   
+                   
+                   PreparedStatement st = db.conn.prepareStatement(upsql);
+                   
+                   st.setString(1, temail);
+                   st.setString(2, tpwd);
+                   
+                   st.setInt(3, tid);
+                   
+                    int res = st.executeUpdate();
+                    System.out.println("sql run work");
+                    if (res > 0) {
+                        ttext.setText("User added Successfully");                  
+                        
+                        
+                    }else{
+                        ttext.setText("database error");
+                    } 
+               
+            }
+        } catch (Exception e) {
+            ttext.setText("Did not run try");
+        }
+    }//GEN-LAST:event_uppwdActionPerformed
 
     private void clear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear4ActionPerformed
         // TODO add your handling code here:
@@ -178,8 +264,8 @@ public class Changepassword extends javax.swing.JFrame {
 
     private void back6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back6ActionPerformed
         // TODO add your handling code here:
-        Techoffidashb back = new Techoffidashb();
-        back.show();
+        dispose();
+        
     }//GEN-LAST:event_back6ActionPerformed
 
     /**
@@ -221,12 +307,13 @@ public class Changepassword extends javax.swing.JFrame {
     private javax.swing.JButton back6;
     private javax.swing.JButton clear4;
     private javax.swing.JPasswordField email;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField pwd;
+    private javax.swing.JLabel ttext;
+    private javax.swing.JButton uppwd;
     // End of variables declaration//GEN-END:variables
 }

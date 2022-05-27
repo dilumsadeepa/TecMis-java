@@ -226,7 +226,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="attendance3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update"/>
+                <Property name="text" type="java.lang.String" value="view"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attendance3ActionPerformed"/>

@@ -67,6 +67,11 @@ public class Toattendance extends javax.swing.JFrame {
         jLabel1.setText("Students Attendance");
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Add New Attendance");
 
@@ -299,6 +304,11 @@ public class Toattendance extends javax.swing.JFrame {
         Attendance2 at2 = new Attendance2();
         at2.show();
     }//GEN-LAST:event_viewattenceActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:dispose();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

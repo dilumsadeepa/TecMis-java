@@ -17,16 +17,18 @@ public class Techoffidashb extends javax.swing.JFrame {
     
     public int tid;
     
-    public Techoffidashb() {
+    public Techoffidashb(int tid) {
         initComponents();
+        this.tid = tid;
     }
 
-    public Techoffidashb(int id) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
-        tid = id;
-        
+    private Techoffidashb() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,7 +123,7 @@ public class Techoffidashb extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Add And Maintain Attendance Details Of Students");
 
-        attendance3.setText("Update");
+        attendance3.setText("view");
         attendance3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attendance3ActionPerformed(evt);
@@ -312,7 +314,7 @@ public class Techoffidashb extends javax.swing.JFrame {
 
     private void updateuserpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateuserpasswordActionPerformed
         // TODO add your handling code here:
-        Changepassword chpwd = new Changepassword();
+        Changepassword chpwd = new Changepassword(tid);
         chpwd.show();
     }//GEN-LAST:event_updateuserpasswordActionPerformed
 

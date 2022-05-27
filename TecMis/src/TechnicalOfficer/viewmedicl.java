@@ -131,8 +131,7 @@ public final class viewmedicl extends javax.swing.JFrame {
 
     private void back9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back9ActionPerformed
         // TODO add your handling code here:
-        Medical med = new Medical();
-        med.show();
+        dispose();
     }//GEN-LAST:event_back9ActionPerformed
 
     /**

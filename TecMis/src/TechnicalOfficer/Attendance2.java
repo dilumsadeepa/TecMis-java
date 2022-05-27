@@ -142,8 +142,7 @@ public final class Attendance2 extends javax.swing.JFrame {
 
     private void back7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back7ActionPerformed
         // TODO add your handling code here:
-        Toattendance back2 = new Toattendance();
-        back2.show();
+        dispose();
     }//GEN-LAST:event_back7ActionPerformed
 
     private void atdtableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_atdtableAncestorAdded

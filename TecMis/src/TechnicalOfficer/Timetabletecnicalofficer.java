@@ -106,8 +106,8 @@ public class Timetabletecnicalofficer extends javax.swing.JFrame {
 
     private void back5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back5ActionPerformed
         // TODO add your handling code here:
-        Techoffidashb timetable = new Techoffidashb();
-        timetable.show();
+        dispose();
+       
     }//GEN-LAST:event_back5ActionPerformed
 
     /**
