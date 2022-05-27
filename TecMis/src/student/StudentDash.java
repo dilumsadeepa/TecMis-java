@@ -60,6 +60,11 @@ public class StudentDash extends javax.swing.JFrame {
         medical.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         medical.setForeground(new java.awt.Color(255, 255, 255));
         medical.setText("MEDICAL");
+        medical.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicalActionPerformed(evt);
+            }
+        });
 
         timetable.setBackground(new java.awt.Color(0, 0, 0));
         timetable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -75,6 +80,11 @@ public class StudentDash extends javax.swing.JFrame {
         grade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         grade.setForeground(new java.awt.Color(255, 255, 255));
         grade.setText("GRADE");
+        grade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradeActionPerformed(evt);
+            }
+        });
 
         course.setBackground(new java.awt.Color(0, 0, 0));
         course.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -179,23 +189,45 @@ public class StudentDash extends javax.swing.JFrame {
 
     private void attendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendanceActionPerformed
         // TODO add your handling code here:
+        Attendance at = new Attendance();
+        at.show();
     }//GEN-LAST:event_attendanceActionPerformed
 
     private void timetableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timetableActionPerformed
         // TODO add your handling code here:
+        Timetable tm = new Timetable();
+        tm.show();
     }//GEN-LAST:event_timetableActionPerformed
 
     private void courseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseActionPerformed
         // TODO add your handling code here:
+        CourseDetails co = new CourseDetails();
+        co.show();
     }//GEN-LAST:event_courseActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
         // TODO add your handling code here:
+        EditProfile ep = new EditProfile();
+        ep.show();
     }//GEN-LAST:event_profileActionPerformed
 
     private void noticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noticeActionPerformed
         // TODO add your handling code here:
+        Notice no = new Notice();
+        no.show();
     }//GEN-LAST:event_noticeActionPerformed
+
+    private void medicalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalActionPerformed
+        // TODO add your handling code here:
+        Medical me = new Medical();
+        me.show();
+    }//GEN-LAST:event_medicalActionPerformed
+
+    private void gradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeActionPerformed
+        // TODO add your handling code here:
+        Grade gr = new Grade();
+        gr.show();
+    }//GEN-LAST:event_gradeActionPerformed
 
     
     public static void main(String args[]) {

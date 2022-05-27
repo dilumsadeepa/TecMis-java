@@ -10,6 +10,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import student.StudentDash;
 
 /**
  *
@@ -180,7 +181,7 @@ public class Login extends javax.swing.JFrame {
                    lecturedashboard lec = new lecturedashboard(id);
                    lec.show();
                }else if(level == 4){
-                   Studentdashbord stu = new Studentdashbord();
+                   StudentDash stu = new StudentDash();
                    stu.show();
                }
            }else{
