@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2022 at 07:48 PM
+-- Generation Time: May 27, 2022 at 07:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -37,6 +37,13 @@ CREATE TABLE `admins` (
   `ad_gender` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `uid`, `ad_name`, `ad_id`, `ad_tel`, `ad_email`, `ad_gender`) VALUES
+(1, '1', 'Dilum Sadeepa', 'ADMIN001', '0789843284', 'dilumhellow@gmail.com', 'Male');
+
 -- --------------------------------------------------------
 
 --
@@ -47,11 +54,17 @@ CREATE TABLE `attendances` (
   `id` int(100) NOT NULL,
   `at_type` varchar(255) NOT NULL,
   `at_date` varchar(255) NOT NULL,
-  `at_hours` varchar(255) NOT NULL,
   `at_status` varchar(255) NOT NULL,
   `at_st_id` varchar(255) NOT NULL,
   `at_sub_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attendances`
+--
+
+INSERT INTO `attendances` (`id`, `at_type`, `at_date`, `at_status`, `at_st_id`, `at_sub_id`) VALUES
+(1, 'T', '2022.05.26', '1', 'TG001', 'ICT2201');
 
 -- --------------------------------------------------------
 
@@ -62,14 +75,28 @@ CREATE TABLE `attendances` (
 CREATE TABLE `cas` (
   `id` int(100) NOT NULL,
   `c_suid` varchar(255) NOT NULL,
-  `q1` int(100) NOT NULL,
-  `q2` int(100) NOT NULL,
-  `q3` int(100) NOT NULL,
-  `q4` int(100) NOT NULL,
-  `ass1` int(100) NOT NULL,
-  `ass2` int(100) NOT NULL,
-  `ass3` int(100) NOT NULL,
-  `mid` int(100) NOT NULL
+  `c_cid` varchar(100) NOT NULL,
+  `q1` int(100) DEFAULT NULL,
+  `q2` int(100) DEFAULT NULL,
+  `q3` int(100) DEFAULT NULL,
+  `q4` int(100) DEFAULT NULL,
+  `ass1` int(100) DEFAULT NULL,
+  `ass2` int(100) DEFAULT NULL,
+  `ass3` int(100) DEFAULT NULL,
+  `mid` int(100) DEFAULT NULL,
+  `fexam` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courselecs`
+--
+
+CREATE TABLE `courselecs` (
+  `id` int(100) NOT NULL,
+  `cl_cid` varchar(100) NOT NULL,
+  `cl_lid` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -84,6 +111,13 @@ CREATE TABLE `courses` (
   `cu_name` varchar(100) NOT NULL,
   `cu_did` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `cu_id`, `cu_name`, `cu_did`) VALUES
+(1, 'ICT2201', 'Internet Aplication Deverlopment', 'ICT');
 
 -- --------------------------------------------------------
 
@@ -143,6 +177,34 @@ CREATE TABLE `medicals` (
   `me_st_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `medicals`
+--
+
+INSERT INTO `medicals` (`id`, `me_type`, `me_date`, `me_sub_id`, `me_st_id`) VALUES
+(1, 'T', '23', 'ICT2201', 'TG001');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notices`
+--
+
+CREATE TABLE `notices` (
+  `id` int(100) NOT NULL,
+  `topic` varchar(255) NOT NULL,
+  `msg` varchar(255) NOT NULL,
+  `ndep` varchar(255) NOT NULL,
+  `ndate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `topic`, `msg`, `ndep`, `ndate`) VALUES
+(2, 'The Project', 'The mini project is goin on', 'ICT', '2022-05-26');
+
 -- --------------------------------------------------------
 
 --
@@ -200,8 +262,12 @@ CREATE TABLE `tec_officers` (
 
 CREATE TABLE `users` (
   `id` int(100) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `id_num` varchar(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `tel` varchar(20) NOT NULL,
+  `gender` varchar(100) NOT NULL,
   `level` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -209,8 +275,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
-(1, 'dilum', '123', '1');
+INSERT INTO `users` (`id`, `id_num`, `name`, `email`, `password`, `tel`, `gender`, `level`) VALUES
+(8, 'ADM001', 'Kamal Gunarathna', 'kamal@email.com', '123', '1234567890', 'Male', '1'),
+(9, 'TEC001', 'Nimal Perera', 'nimal@email.com', '123', '1234567890', 'Male', '2'),
+(10, 'TEC002', 'Sunil Pehesara', 'sunil@email.com', '123', '1234567890', 'Male', '2'),
+(11, 'LEC001', 'Sarath Perera', 'sarath@email.com', '123', '1234567890', 'Male', '3'),
+(12, 'LEC002', 'Mauri Sakunthala', 'mauri@email.com', '123', '1234567890', 'Female', '3'),
+(13, 'TG001', 'Dilum Sadeepa', 'dilum@email.com', '123', '1234567890', 'Male', '4'),
+(14, 'TG002', 'Hasani Hewage', 'hasani@email.com', '123', '1234567890', 'Female', '4'),
+(15, 'TG003', 'Pimuditha Sathsara', 'pimuditha@email.com', '123', '1234567890', 'Male', '4'),
+(16, 'TG004', 'Chamidu Madushan', 'chamidu@email.com', '123', '1234567890', 'Male', '4');
 
 --
 -- Indexes for dumped tables
@@ -232,6 +306,12 @@ ALTER TABLE `attendances`
 -- Indexes for table `cas`
 --
 ALTER TABLE `cas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `courselecs`
+--
+ALTER TABLE `courselecs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -262,6 +342,12 @@ ALTER TABLE `lectures`
 -- Indexes for table `medicals`
 --
 ALTER TABLE `medicals`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notices`
+--
+ALTER TABLE `notices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -296,25 +382,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cas`
 --
 ALTER TABLE `cas`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `courselecs`
+--
+ALTER TABLE `courselecs`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -338,7 +430,13 @@ ALTER TABLE `lectures`
 -- AUTO_INCREMENT for table `medicals`
 --
 ALTER TABLE `medicals`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notices`
+--
+ALTER TABLE `notices`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -362,7 +460,7 @@ ALTER TABLE `tec_officers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
