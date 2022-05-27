@@ -16,7 +16,7 @@ import tecmis.DB;
  *
  * @author prema
  */
-public class Attendance2 extends javax.swing.JFrame {
+public final class Attendance2 extends javax.swing.JFrame {
 
     /**
      * Creates new form Attendance2
@@ -26,6 +26,7 @@ public class Attendance2 extends javax.swing.JFrame {
     public Attendance2() {
         initComponents();
         db.getconnect();
+        scodata();
     }
     
     public void scodata(){
@@ -79,9 +80,6 @@ public class Attendance2 extends javax.swing.JFrame {
 
         atdtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
