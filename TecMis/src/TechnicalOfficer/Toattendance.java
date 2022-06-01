@@ -90,6 +90,17 @@ public class Toattendance extends javax.swing.JFrame {
         });
 
         jButton8.setText("Clear");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        adate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adateActionPerformed(evt);
+            }
+        });
 
         asta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "0" }));
 
@@ -311,6 +322,17 @@ public class Toattendance extends javax.swing.JFrame {
         // TODO add your handling code here:dispose();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        coid.setText("");
+        stid.setText("");
+        adate.setText("");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void adateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adateActionPerformed
 
     /**
      * @param args the command line arguments

@@ -163,7 +163,7 @@ public class Login extends javax.swing.JFrame {
         
         try {
             
-            String sql = "select * from users where email = '"+luser+"' and password = '"+lpwd+"'";
+            String sql = "select * from users where id_num = '"+luser+"' and password = '"+lpwd+"'";
             
             ResultSet result = db.stm.executeQuery(sql);
 
