@@ -63,6 +63,11 @@ public class Medical extends javax.swing.JFrame {
         userType3.setEditable(false);
         userType3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userType3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 137, 95)));
+        userType3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userType3ActionPerformed(evt);
+            }
+        });
 
         userType4.setEditable(false);
         userType4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -150,7 +155,12 @@ public class Medical extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void userType3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userType3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userType3ActionPerformed
 
     /**
      * @param args the command line arguments
